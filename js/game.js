@@ -1,3 +1,4 @@
+//const
 const KEY_CODE_LEFT = 37;
 const KEY_CODE_RIGHT = 39;
 const KEY_CODE_SPACE = 32;
@@ -10,15 +11,17 @@ const PLAYER_MAX_SPEED = 500.0;
 const LASER_MAX_SPEED = 300.0;
 const LASER_COOLDOWN = 0.5;
 
-const ENEMIES_PER_ROW = 10;
+const ENEMIES_PER_ROW = 8;
 const ENEMY_HORIZONTAL_PADDING = 80;
 const ENEMY_VERTICAL_PADDING = 70;
 const ENEMY_VERTICAL_SPACING = 80;
 const ENEMY_COOLDOWN = 5.0;
+//var 
+
+let SCORE= 0 
 
 
-const GAME_STATE = {
-  
+const GAME_STATE = {  
   lastTime: Date.now(),
   leftPressed: false,
   rightPressed: false,
@@ -63,6 +66,7 @@ function rand(min, max) {
   return min + Math.random() * (max - min);
 }
 
+//character 
 function createPlayer($container) {
   GAME_STATE.playerX = GAME_WIDTH / 2;
   GAME_STATE.playerY = GAME_HEIGHT - 50;
@@ -71,9 +75,8 @@ function createPlayer($container) {
   $player.className = "player";
   $container.appendChild($player);
   setPosition($player, GAME_STATE.playerX, GAME_STATE.playerY);
-  
-
 }
+
 
 function destroyPlayer($container, player) {
   $container.removeChild(player);
@@ -105,7 +108,7 @@ function updatePlayer(dt, $container) {
     GAME_STATE.playerCooldown -= dt;
   }
 
-  const player = document.querySelector(".player");
+  const player = document.querySelector(".player");  //here 
   setPosition(player, GAME_STATE.playerX, GAME_STATE.playerY);
   
 }
@@ -155,6 +158,7 @@ function destroyLaser($container, laser) {
   laser.isDead = true;
 }
 
+//enemy 
 function createEnemy($container, x, y) {
   const $element = document.createElement("img");
   $element.src = "img/enemy-blue-1.png";
@@ -191,7 +195,10 @@ function updateEnemies(dt, $container) {
 
 function destroyEnemy($container, enemy) {
   $container.removeChild(enemy.$element);
-  enemy.isDead = true;
+  if (enemy.isDead = true){
+     SCORE = SCORE += 10
+     document.getElementById("score1").innerHTML = SCORE
+  }
 }
 
 function createEnemyLaser($container, x, y) {
@@ -224,8 +231,9 @@ function updateEnemyLasers(dt, $container) {
   }
   GAME_STATE.enemyLasers = GAME_STATE.enemyLasers.filter(e => !e.isDead);
 }
-
+//init
  function init (){
+  
   const $container = document.querySelector(".game");
   const audio = new Audio("sound/Megaman2Fortress.mp3");
   audio.play();
@@ -248,12 +256,13 @@ function playerHasWon() {
 function update(e) {
   const currentTime = Date.now();
   const dt = (currentTime - GAME_STATE.lastTime) / 1000.0;
-
+  let SCORE=0
+  
   if (GAME_STATE.gameOver) {
     document.querySelector(".game-over").style.display = "block";
     return;
   }
-
+  
   if (playerHasWon()) {
     document.querySelector(".congratulations").style.display = "block";
     return;
@@ -291,9 +300,13 @@ function onKeyUp(e) {
 }
 
 
+
+// start click init 
 document.getElementById('start').onclick = function(){
 init();
 window.addEventListener("keydown", onKeyDown);
 window.addEventListener("keyup", onKeyUp);
 window.requestAnimationFrame(update);
+
 }
+

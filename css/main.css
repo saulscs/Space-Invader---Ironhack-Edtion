@@ -1,13 +1,10 @@
 
-
 @import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
 
 *{
   margin: 0;
-  padding: 0;
-  
+  padding: 0;  
 }
-
 
 .wrap {
   display: flex;
@@ -90,6 +87,8 @@ footer {
   border-radius: 10px;
   text-align: center;
   animation: pop-in 1s;
+  font-family:'Press Start 2P', cursive;
+  opacity: 0.7;
 }
 
 .game-over {
@@ -106,6 +105,19 @@ footer {
   opacity: 0.7;
 }
 
+.game-openning{
+  display: none;
+  position: absolute;
+  background: black;
+  color: white;
+  padding: 20px 50px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  text-align: center;
+  animation: pop-in 1s;
+  font-family:'Press Start 2P', cursive;
+  opacity: 0.7;
+}
 .btn {
   border: 2px solid #36bbf5;
   border-radius: 3px;
@@ -121,6 +133,7 @@ footer {
   font: 14px;
   font-family:'Press Start 2P', cursive;
 }
+
 @keyframes pop-in {
   0% {
     opacity: 0;
@@ -163,14 +176,12 @@ p{
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
-
-  
 }
 
 .game_space{
   display:flex;
   flex-wrap: wrap;
-  }
+}
 
 .footer{
   display: flex;
@@ -182,6 +193,7 @@ p{
   display: flex;
   flex-wrap: wrap;
   flex-direction: initial;
+ 
 }
 
 .player2{
@@ -192,11 +204,15 @@ p{
 
 .player1 p{
   font-size: 25px;
+  margin: 10px;
 }
 
 .player2 p{
   font-size: 25px;
+  margin: 10px;
 }
+
+
 
 .thanks{
   display: flex;
