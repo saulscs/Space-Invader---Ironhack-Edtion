@@ -16,6 +16,7 @@ const ENEMY_VERTICAL_PADDING = 70;
 const ENEMY_VERTICAL_SPACING = 80;
 const ENEMY_COOLDOWN = 5.0;
 
+
 const GAME_STATE = {
   
   lastTime: Date.now(),
@@ -224,8 +225,10 @@ function updateEnemyLasers(dt, $container) {
   GAME_STATE.enemyLasers = GAME_STATE.enemyLasers.filter(e => !e.isDead);
 }
 
-function init() {
+ function init (){
   const $container = document.querySelector(".game");
+  const audio = new Audio("sound/Megaman2Fortress.mp3");
+  audio.play();
   createPlayer($container);
   const enemySpacing =
     (GAME_WIDTH - ENEMY_HORIZONTAL_PADDING * 2) / (ENEMIES_PER_ROW - 1);
@@ -287,7 +290,10 @@ function onKeyUp(e) {
   }
 }
 
+
+document.getElementById('start').onclick = function(){
 init();
 window.addEventListener("keydown", onKeyDown);
 window.addEventListener("keyup", onKeyUp);
 window.requestAnimationFrame(update);
+}
