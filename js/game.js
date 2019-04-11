@@ -1,4 +1,5 @@
 //const
+
 const KEY_CODE_LEFT = 37;
 const KEY_CODE_RIGHT = 39;
 const KEY_CODE_SPACE = 32;
@@ -195,8 +196,8 @@ function updateEnemies(dt, $container) {
 
 function destroyEnemy($container, enemy) {
   $container.removeChild(enemy.$element);
-  if (enemy.isDead = true){
-     SCORE = SCORE += 10
+  if (enemy.isDead = true){                // condicional para aumentar score 
+     SCORE = SCORE += 10 
      document.getElementById("score1").innerHTML = SCORE
   }
 }
@@ -256,7 +257,7 @@ function playerHasWon() {
 function update(e) {
   const currentTime = Date.now();
   const dt = (currentTime - GAME_STATE.lastTime) / 1000.0;
-  let SCORE=0
+  let SCORE = 0
   
   if (GAME_STATE.gameOver) {
     document.querySelector(".game-over").style.display = "block";
@@ -307,6 +308,6 @@ init();
 window.addEventListener("keydown", onKeyDown);
 window.addEventListener("keyup", onKeyUp);
 window.requestAnimationFrame(update);
-
 }
+
 
